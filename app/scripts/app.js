@@ -15,7 +15,9 @@ angular
     'ngCookies',
     'ngResource',
     'ngRoute',
-    'ngSanitize'
+    'ngSanitize',
+    'ngMessages',
+    angularDragula(angular)
   ])
   .config(function ($routeProvider) {
     $routeProvider
@@ -32,4 +34,9 @@ angular
       .otherwise({
         redirectTo: '/'
       });
-  });
+  })
+  .config(function($mdIconProvider) {
+  $mdIconProvider
+    .iconSet('face',  'images/icons/ic_face_black_24px.svg', 24)
+    .iconSet('label', 'images/icons/ic_label_24px.svg', 24)
+});

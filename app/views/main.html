@@ -1,4 +1,8 @@
-<md-content class="md-padding" id='md-content-all' ng-controller="projectsList">
+
+<!-- List of Projects -->
+<div ng-controller="projectsList">
+
+<md-content class="md-padding" id='md-content-all'>
   <div layout="column" layout-gt-xs="row" >
     <md-card flex flex-gt-xs="20">
       <h2>List of projects:</h2>
@@ -11,6 +15,7 @@
       </md-card-content>
     </md-card>
 
+<!-- Detail of the Project -->
     <md-card flex ng-if="project.id">
       <md-card-content>
           <div>
@@ -35,37 +40,202 @@
     </md-card>
   </div>
 
-  <div layout="column" layout-gt-xs="row" ng-if="project.id">
-    <md-card flex ng-if="!project.sprints">
-      <md-card-content >
-        <p> No sprint declared for project '{{project.title}}'</p>
-      </md-card-content>
-    </md-card>
-    <md-card flex flex-gt-xs="20" ng-if="project.sprints">
-      <h2>List of sprints:</h2>
-      <md-card-content ng-if="project.sprints">
-        <p ng-repeat="sprint in project.sprints">
-          <md-button ng-click="selectSprint(sprint.id)">
-            {{sprint.name}}
-          </md-button>
-        </p>
-      </md-card-content>
-    </md-card>
+<!-- List of Sprints -->
+  <md-content class="md-padding" ng-if="project.id && project.sprints">
+    <h2 class="md-toolbar-tools">List of Sprints:</h2>
+    <md-nav-bar md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links" >
+      <md-nav-item ng-repeat="sprint in project.sprints" md-nav-click="goto('{{sprint.id}}')" name="{{sprint.name}}">{{sprint.name}}</md-nav-item>
+    </md-nav-bar>
+  </md-content>
+  <md-card flex flex-gt-xs="100" ng-if="project.id && !project.sprints">
+    <h2>No Sprint for the project {{project.title}}</h2>
+  </md-card>
 
-    <md-card flex ng-if="project.sprints">
-      <h2>Todo</h2>
-      <md-card-content ng-if="project.sprints">
-      </md-card-content>
-    </md-card>
-    <md-card flex ng-if="project.sprints">
-      <h2>In progress</h2>
-      <md-card-content ng-if="project.sprints">
-      </md-card-content>
-    </md-card>
-    <md-card flex ng-if="project.sprints">
-      <h2>Completed</h2>
-      <md-card-content ng-if="project.sprints">
-      </md-card-content>
-    </md-card>
+<!-- Columns: #Todo #InProgress #Done -->
+  <div  ng-cloak="" layout-gt-sm="row" layout="column" class="listdemoBasicUsage" ng-if="project.id && project.sprints">
+
+<!-- List of Todo-->
+    <div flex-gt-sm="25" flex="">
+      <md-toolbar layout="row" class="md-hue-3">
+        <div class="md-toolbar-tools">
+          <span>TODO</span>
+        </div>
+      </md-toolbar>
+      <md-content>
+        <md-list flex="" dragula='"bag-TODO"'>
+          <md-list-item class="md-3-line md-long-text">
+            <i class="md-avatar material-icons md-24" md-svg-icon="face" alt="Item 1">face</i>
+            <!--md-icon md-svg-icon="face"></md-icon-->
+            <div class="md-list-item-text">
+              <h3>Item todo 1</h3>
+              <p>
+                This is the description if the item: "Item todo 1".
+              </p>
+            </div>
+          </md-list-item>
+          <md-list-item class="md-3-line md-long-text">
+            <i class="md-avatar material-icons md-24" md-svg-icon="label" alt="Item 2">label</i>
+            <div class="md-list-item-text">
+              <h3>Item todo 2</h3>
+              <p>
+                This is the description if the item: "Item todo 2".
+              </p>
+            </div>
+          </md-list-item>
+        </md-list>
+      </md-content>
+    </div>
   </div>
-</md-content>
+
+
+
+
+
+
+
+
+
+<!--And Now repeat the columns -->
+
+
+
+
+
+
+
+
+
+
+<!-- Columns: #Todo #InProgress #Done -->
+    <div  ng-cloak="" layout-gt-sm="row" layout="column" class="listdemoBasicUsage" ng-if="project.id && project.sprints">
+
+<!-- List of Todo-->
+      <div flex-gt-sm="25" flex="">
+        <md-toolbar layout="row" class="md-hue-3">
+          <div class="md-toolbar-tools">
+            <span>TODO</span>
+          </div>
+        </md-toolbar>
+        <md-content>
+          <md-list flex="" dragula='"bag-TODO"'>
+            <md-list-item class="md-3-line md-long-text">
+              <i class="md-avatar material-icons md-24" md-svg-icon="face" alt="Item 1">face</i>
+              <!--md-icon md-svg-icon="face"></md-icon-->
+              <div class="md-list-item-text">
+                <h3>Item todo 1</h3>
+                <p>
+                  This is the description if the item: "Item todo 1".
+                </p>
+              </div>
+            </md-list-item>
+            <md-list-item class="md-3-line md-long-text">
+              <i class="md-avatar material-icons md-24" md-svg-icon="label" alt="Item 2">label</i>
+              <div class="md-list-item-text">
+                <h3>Item todo 2</h3>
+                <p>
+                  This is the description if the item: "Item todo 2".
+                </p>
+              </div>
+            </md-list-item>
+          </md-list>
+        </md-content>
+      </div>
+
+<!-- List of In Progress-->
+      <div flex-gt-sm="25" flex="">
+        <md-toolbar layout="row" class="md-hue-3">
+          <div class="md-toolbar-tools">
+            <span>In Progress</span>
+          </div>
+        </md-toolbar>
+        <md-content>
+          <md-list flex="" dragula='"bag-TODO"'>
+            <md-list-item class="md-3-line md-long-text">
+              <i class="md-avatar material-icons md-24" md-svg-icon="face" alt="Item 1">face</i>
+              <!--md-icon md-svg-icon="face"></md-icon-->
+              <div class="md-list-item-text">
+                <h3>Item in progress 1</h3>
+                <p>
+                  This is the description if the item: "Item in progress 1".
+                </p>
+              </div>
+            </md-list-item>
+            <md-list-item class="md-3-line md-long-text">
+              <i class="md-avatar material-icons md-24" md-svg-icon="label" alt="Item 2">label</i>
+              <div class="md-list-item-text">
+                <h3>Item in progress 2</h3>
+                <p>
+                  This is the description if the item: "Item in progress 2".
+                </p>
+              </div>
+            </md-list-item>
+          </md-list>
+        </md-content>
+      </div>
+
+<!-- List of To Test-->
+      <div flex-gt-sm="25" flex="">
+        <md-toolbar layout="row" class="md-hue-3">
+          <div class="md-toolbar-tools">
+            <span>To Test</span>
+          </div>
+        </md-toolbar>
+        <md-content>
+          <md-list flex="" dragula='"bag-TODO"'>
+            <md-list-item class="md-3-line md-long-text">
+              <i class="md-avatar material-icons md-24" md-svg-icon="face" alt="Item 1">face</i>
+              <!--md-icon md-svg-icon="face"></md-icon-->
+              <div class="md-list-item-text">
+                <h3>Item test 1</h3>
+                <p>
+                  This is the description if the item: "Item test 1".
+                </p>
+              </div>
+            </md-list-item>
+            <md-list-item class="md-3-line md-long-text">
+              <i class="md-avatar material-icons md-24" md-svg-icon="label" alt="Item 2">label</i>
+              <div class="md-list-item-text">
+                <h3>Item test 2</h3>
+                <p>
+                  This is the description if the item: "Item test 2".
+                </p>
+              </div>
+            </md-list-item>
+          </md-list>
+        </md-content>
+      </div>
+
+<!-- List of In Done-->
+      <div flex-gt-sm="25" flex="">
+        <md-toolbar layout="row" class="md-hue-3">
+          <div class="md-toolbar-tools">
+            <span>Done</span>
+          </div>
+        </md-toolbar>
+        <md-content>
+          <md-list flex="" dragula='"bag-TODO"'>
+            <md-list-item class="md-3-line md-long-text">
+              <i class="md-avatar material-icons md-24" md-svg-icon="face" alt="Item 1">face</i>
+              <!--md-icon md-svg-icon="face"></md-icon-->
+              <div class="md-list-item-text">
+                <h3>Item done 1</h3>
+                <p>
+                  This is the description if the item: "Item done 1".
+                </p>
+              </div>
+            </md-list-item>
+            <md-list-item class="md-3-line md-long-text">
+              <i class="md-avatar material-icons md-24" md-svg-icon="label" alt="Item 2">label</i>
+              <div class="md-list-item-text">
+                <h3>Item done 2</h3>
+                <p>
+                  This is the description if the item: "Item done 2".
+                </p>
+              </div>
+            </md-list-item>
+          </md-list>
+        </md-content>
+      </div>
+    </div>
+
+</div>
