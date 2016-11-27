@@ -34,6 +34,8 @@
     "node": ">=0.10.0"
   },
   "dependencies": {
-    "angular-material": "^1.1.1"
+    "angular-dragula": "^1.2.8",
+    "angular-material": "^1.1.1",
+    "material-design-icons": "^3.0.1"
   }
 }
