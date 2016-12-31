@@ -1,58 +1,17 @@
-
-<!-- List of Projects -->
-<div ng-controller="projectsList">
-
-<md-content class="md-padding" id='md-content-all'>
-  <div layout="column" layout-gt-xs="row" >
-    <md-card flex flex-gt-xs="20">
-      <h2>List of projects:</h2>
-      <md-card-content>
-        <p ng-repeat="project in projectsList">
-          <md-button ng-click="select(project.id)">
-            {{project.title}}
-          </md-button>
-        </p>
-      </md-card-content>
-    </md-card>
-
-<!-- Detail of the Project -->
-    <md-card flex ng-if="project.id">
-      <md-card-content>
-          <div>
-            <strong>Title:</strong> &nbsp;&nbsp;
-            <md-input-container>
-              <input  aria-label="Title" ng-model="project.title">
-            </md-input-container>
-          </div>
-          <div>
-            <strong>Description:</strong> &nbsp;&nbsp;
-            <md-input-container>
-              <textarea aria-label="Description" ng-model="project.description"></textarea>
-            </md-input-container>
-          </div>
-          <div>
-            <strong>Tags:</strong> &nbsp;&nbsp;
-            <md-input-container>
-                  <md-chips ng-model="project.tags" readonly="ctrl.readonly" md-removable="ctrl.removable"></md-chips>
-            </md-input-container>
-          </div>
-      </md-card-content>
-    </md-card>
-  </div>
-
-<!-- List of Sprints -->
-  <md-content class="md-padding" ng-if="project.id && project.sprints">
-    <h2 class="md-toolbar-tools">List of Sprints:</h2>
-    <md-nav-bar md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links" >
-      <md-nav-item ng-repeat="sprint in project.sprints" md-nav-click="goto('{{sprint.id}}')" name="{{sprint.name}}">{{sprint.name}}</md-nav-item>
-    </md-nav-bar>
-  </md-content>
-  <md-card flex flex-gt-xs="100" ng-if="project.id && !project.sprints">
-    <h2>No Sprint for the project {{project.title}}</h2>
-  </md-card>
+<md-content class="md-padding" ng-if="project.id && project.sprints">
+  <h2 class="md-toolbar-tools">BackLog items:</h2>
+  <md-nav-bar md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links" >
+    <md-nav-item ng-repeat="sprint in project.sprints" md-nav-click="goto('{{sprint.id}}')" name="{{sprint.name}}">{{sprint.name}}</md-nav-item>
+    <md-nav-item md-nav-click="goto('unassigned')" name="unassigned">Not assigned</md-nav-item>
+    <md-nav-item md-nav-click="goto('all')" name="all">All List</md-nav-item>
+  </md-nav-bar>
+</md-content>
+<md-card flex flex-gt-xs="100" ng-if="project.id && !project.sprints">
+  <h2>No Sprint for the project {{project.title}}</h2>
+</md-card>
 
 <!-- Columns: #Todo #InProgress #Done -->
-    <div  ng-cloak="" layout-gt-sm="row" layout="column" class="listdemoBasicUsage" ng-if="project.id && project.sprints">
+<div  ng-cloak="" layout-gt-sm="row" layout="column" class="listdemoBasicUsage" ng-if="project.id && project.sprints">
 
 <!-- List of Todo-->
       <div flex-gt-sm="25" flex="">
@@ -181,6 +140,4 @@
           </md-list>
         </md-content>
       </div>
-    </div>
-
 </div>

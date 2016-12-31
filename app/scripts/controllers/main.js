@@ -106,14 +106,14 @@ angular.module('agileBoardApp')
     ]
 
     $scope.select = function(id) {
-    for(i in $scope.projectsList) {
-        if($scope.projectsList[i].id == id) {
-          //we use angular.copy() method to create
-          //copy of original object
-            $scope.project = angular.copy($scope.projectsList[i]);
+      for(i in $scope.projectsList) {
+          if($scope.projectsList[i].id == id) {
+            //we use angular.copy() method to create
+            //copy of original object
+              $scope.project = angular.copy($scope.projectsList[i]);
+            }
           }
-        }
-    }
+      }
   },
 
   function($scope, dragulaService) {

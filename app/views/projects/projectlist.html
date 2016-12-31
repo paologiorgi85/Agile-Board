@@ -1,0 +1,8 @@
+<h2>List of projects:</h2>
+<md-card-content>
+  <p ng-repeat="project in projectsList">
+    <md-button ng-click="select(project.id)">
+      {{project.title}}
+    </md-button>
+  </p>
+</md-card-content>

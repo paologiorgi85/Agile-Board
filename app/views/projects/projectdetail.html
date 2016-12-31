@@ -1,0 +1,21 @@
+
+  <md-card-content>
+      <div>
+        <strong>Title:</strong> &nbsp;&nbsp;
+        <md-input-container>
+          <input  aria-label="Title" ng-model="project.title">
+        </md-input-container>
+      </div>
+      <div>
+        <strong>Description:</strong> &nbsp;&nbsp;
+        <md-input-container>
+          <textarea aria-label="Description" ng-model="project.description"></textarea>
+        </md-input-container>
+      </div>
+      <div>
+        <strong>Tags:</strong> &nbsp;&nbsp;
+        <md-input-container>
+              <md-chips ng-model="project.tags" readonly="ctrl.readonly" md-removable="ctrl.removable"></md-chips>
+        </md-input-container>
+      </div>
+  </md-card-content>
