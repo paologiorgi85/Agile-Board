@@ -1,8 +1,18 @@
-<h2>List of projects:</h2>
-<md-card-content>
-  <p ng-repeat="project in projectsList">
-    <md-button ng-click="select(project.id)">
-      {{project.title}}
-    </md-button>
-  </p>
-</md-card-content>
+<div >
+  <md-content class="md-padding" id='md-content-all'>
+    <div layout="column" layout-gt-xs="row" >
+
+<!-- List of Projects -->
+      <md-card flex flex-gt-xs="20">
+        <h2 align="center">List of projects:</h2>
+        <md-card-content>
+          <p ng-repeat="project in projects">
+            <md-button ui-sref-active="active" ui-sref="projectDetail({ projectID: project.id })">
+            <!--md-button ui-sref-active="active" ui-sref="projectDetail({ projectID: project.id })"-->
+            <!--md-button ui-sref-active="active" ui-sref="projects.projectDetail({ projectId: project.id })"-->
+              {{project.title}}
+            </md-button>
+          </p>
+        </md-card-content>
+      </md-card>
+</div>

@@ -26,25 +26,33 @@ myApp.run(
   ]
 );
 
-myApp.config(function($stateProvider) {
+myApp.config(function($stateProvider, $urlRouterProvider) {
+
+  $urlRouterProvider.otherwise('/projects');
+
   var states = [
     {
       name: 'projects',
       url: '/projects',
-      controller: 'projectsList',
-      //templateUrl: 'views/projects/main.html',
-      views: {
-        '': { templateUrl: 'views/projects/main.html' },
-        'projectlist@projects': {
-          templateUrl: 'views/projects/projectlist.html'
-        },
-        'projectdetail@projects': {
-          templateUrl: 'views/projects/projectdetail.html'
-        },
-        'projectbacklog@projects': {
-          templateUrl: 'views/projects/projectbacklog.html'
+      controller: 'projectsListCtrl',
+      resolve: {
+        projects: function(ProjectService) {
+          return ProjectService.getAllProjects();
         }
-      }
+      },
+      templateUrl: 'views/projects/projectlist.html'
+    },
+    {
+      name: 'projectDetail',
+      url: '/projects/{projectID}',
+      controller: 'projectDetailCtrl',
+      templateUrl: 'views/projects/projectdetail.html'
+    },
+// nested list with custom controller
+    {
+      name: 'projects.sprints',
+      url: ':id/sprints',
+      templateUrl: 'views/projects/projectbacklog/backlogheader.html'
     },
     {
       name: 'about',
