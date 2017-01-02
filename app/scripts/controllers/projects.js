@@ -17,9 +17,7 @@ myApp.controller('projectsListCtrl', ['ProjectService', '$scope','projects', fun
 
 myApp.controller('projectDetailCtrl', ['ProjectService', '$scope', '$http','$stateParams', '$state', function(ProjectService, $scope, $http, $stateParams, $state) {
   console.log("List of Projects into projectDetailCtrl:");
-  $scope.projectList = ProjectService.getAllProjects();
-  console.log($scope.projectList);
-  console.log("Value of $state.params['projectID']:");
-  console.log($state.params['projectID']);
-  $scope.project = $scope.projectList[1];
+  $scope.project = ProjectService.getProject();
+  //console.log("$scope.project:");
+  //console.log($scope.project);
 }]);
