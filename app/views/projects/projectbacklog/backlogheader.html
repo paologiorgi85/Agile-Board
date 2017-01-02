@@ -1,0 +1,12 @@
+<md-content class="md-padding" ng-if="project.id && project.sprints">
+  <h2 class="md-toolbar-tools">BackLog items:</h2>
+  <md-nav-bar md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links" >
+    <!--md-nav-item ng-repeat="sprint in project.sprints" ui-sref="projects.sprints({id : sprints.id})" name="{{sprint.name}}">{{sprint.name}}</md-nav-item-->
+    <md-nav-item ng-repeat="sprint in project.sprints" ui-sref="projects.sprints({id : sprint.id})" md-nav-click="goto('{{sprint.id}}')" name="{{sprint.name}}" id="{{sprint.id}}">{{sprint.name}}</md-nav-item>
+    <md-nav-item md-nav-click="goto('unassigned')" name="unassigned">Not assigned</md-nav-item>
+    <md-nav-item md-nav-click="goto('all')" name="all">All List</md-nav-item>
+  </md-nav-bar>
+</md-content>
+<md-card flex flex-gt-xs="100" ng-if="project.id && !project.sprints">
+  <h2>No Sprint for the project {{project.title}}</h2>
+</md-card>
