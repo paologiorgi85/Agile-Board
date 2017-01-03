@@ -55,6 +55,10 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
         'backlogheader@projectCard': {
           controller: 'projectCardCtrl',
           templateUrl: 'views/projects/projectbacklog/backlogheader.html'
+        },
+        'backlogdetails@projectCard': {
+          controller: 'projectCardCtrl',
+          templateUrl: 'views/projects/projectbacklog/backlogdetails.html'
         }
       }
     },
