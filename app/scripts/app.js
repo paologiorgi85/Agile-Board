@@ -43,10 +43,20 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
       templateUrl: 'views/projects/projectlist.html'
     },
     {
-      name: 'projectDetail',
+      name: 'projectCard',
       url: '/projects/{projectID}',
-      controller: 'projectDetailCtrl',
-      templateUrl: 'views/projects/projectdetail.html'
+      controller: 'projectCardCtrl',
+      views: {
+        '': {templateUrl: 'views/projects/partial-project-card.html'},
+        'project-header@projectCard': {
+          controller: 'projectCardCtrl',
+          templateUrl: 'views/projects/project-header.html'
+        },
+        'backlogheader@projectCard': {
+          controller: 'projectCardCtrl',
+          templateUrl: 'views/projects/projectbacklog/backlogheader.html'
+        }
+      }
     },
 // nested list with custom controller
     {

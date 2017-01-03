@@ -3,8 +3,8 @@ myApp.controller('projectsListCtrl', ['ProjectService', '$scope','projects', fun
   $scope.projects = projects;
 }]);
 
-myApp.controller('projectDetailCtrl', ['ProjectService', '$scope', '$http','$stateParams', '$state', function(ProjectService, $scope, $http, $stateParams, $state) {
-  console.log("Into the projectDetailCtrl");
+myApp.controller('projectCardCtrl', ['ProjectService', '$scope', '$http','$stateParams', '$state', function(ProjectService, $scope, $http, $stateParams, $state) {
+  console.log("Into the projectCardCtrl");
   return $http.get('data/projects.json', { cache: true }).then(function(res) {
     for(var i=0;i<res.data.length;i++) {
       if(res.data[i].id == $state.params['projectID']) {
