@@ -47,7 +47,9 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
       url: '/projects/{projectID}',
       controller: 'projectCardCtrl',
       views: {
-        '': {templateUrl: 'views/projects/partial-project-card.html'},
+        '': {
+            templateUrl: 'views/projects/partial-project-card.html'
+        },
         'project-header@projectCard': {
           controller: 'projectCardCtrl',
           templateUrl: 'views/projects/project-header.html'
@@ -62,11 +64,15 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
         }
       }
     },
-// nested list with custom controller
     {
-      name: 'projects.sprints',
-      url: ':id/sprints',
-      templateUrl: 'views/projects/projectbacklog/backlogheader.html'
+      name: 'projectCard.sprint',
+      url: '^/:id',
+      views: {
+        'detail': {
+          controller: 'projectCardCtrl',
+          templateUrl: 'views/projects/projectbacklog/backlogheader.html'
+        }
+      }
     },
     {
       name: 'about',
